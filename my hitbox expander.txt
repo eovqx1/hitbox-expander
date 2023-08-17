@@ -1,0 +1,50 @@
+
+local Player = game.Players.LocalPlayer
+
+local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/xHeptc/Kavo-UI-Library/main/source.lua"))()
+
+		game:GetService("StarterGui"):SetCore("SendNotification", { 
+			Title = "eovqx hitbox expander";
+			Text = "idk what to put here";
+			Icon = "rbxthumb://type=Asset&id=11002973134&w=150&h=150"})
+		Duration = 3;
+wait(3)
+
+local Window = Library.CreateLib("hitbox expander", "BloodTheme")
+		game:GetService("StarterGui"):SetCore("SendNotification", { 
+			Title = "hitbox expander";
+			Text = "hitbox expander Loaded Successfully";
+			Icon = "rbxthumb://type=Asset&id=11002973134&w=150&h=150"})
+		Duration = 3;
+local Tab = Window:NewTab("Hitbox")
+local Section = Tab:NewSection("Hitbox:")
+Section:NewToggle("Toggle Hitbox Expander", "Expand Player Hitbox's", function(state)
+	if state then
+		_G.HeadSize = 10 _G.Disabled = true game:GetService('RunService').RenderStepped:connect(function() if _G.Disabled then for i,v in next, game:GetService('Players'):GetPlayers() do if v.Name ~= game:GetService('Players').LocalPlayer.Name then pcall(function() v.Character.HumanoidRootPart.Size = Vector3.new(_G.HeadSize,_G.HeadSize,_G.HeadSize) v.Character.HumanoidRootPart.Transparency = 0.7 v.Character.HumanoidRootPart.BrickColor = BrickColor.new(1,0,0) v.Character.HumanoidRootPart.Material = "Neon" v.Character.HumanoidRootPart.CanCollide = false end) end end end end)
+		game:GetService("StarterGui"):SetCore("SendNotification", { 
+			Title = "hitbox expander";
+			Text = "Hitbox Loaded, "..Player.Name.."!";
+			Icon = "rbxthumb://type=Asset&id=11002973134&w=150&h=150"})
+		Duration = 3;
+	else
+		_G.HeadSize = 2 _G.Disabled = true game:GetService('RunService').RenderStepped:connect(function() if _G.Disabled then for i,v in next, game:GetService('Players'):GetPlayers() do if v.Name ~= game:GetService('Players').LocalPlayer.Name then pcall(function() v.Character.HumanoidRootPart.Size = Vector3.new(_G.HeadSize,_G.HeadSize,_G.HeadSize) v.Character.HumanoidRootPart.Transparency = 1 v.Character.HumanoidRootPart.BrickColor = BrickColor.new(1,0,0) v.Character.HumanoidRootPart.Material = "Neon" v.Character.HumanoidRootPart.CanCollide = false end) end end end end)
+		game:GetService("StarterGui"):SetCore("SendNotification", { 
+			Title = "hitbox expander";
+			Text = "Hitbox Unloaded, "..Player.Name.."!";
+			Icon = "rbxthumb://type=Asset&id=11002973134&w=150&h=150"})
+		Duration = 3;
+	end
+end)
+local Section = Tab:NewSection("Hitbox Config:")
+Section:NewSlider("Hitbox Size", "Change Hitbox Size", 25, 1, function(s) -- 500 (MaxValue) | 0 (MinValue)
+	_G.HeadSize = (s)
+end)
+local Section = Tab:NewSection("Window Config:")
+Section:NewKeybind("Toggle UI", "Toggle The UI With Keys On Your Keyboard", Enum.KeyCode.E, function()
+	Library:ToggleUI()
+		game:GetService("StarterGui"):SetCore("SendNotification", { 
+			Title = "hitbox";
+			Text = "Toggled UI, "..Player.Name.."!";
+			Icon = "rbxthumb://type=Asset&id=11002973134&w=150&h=150"})
+		Duration = 3;
+end)
